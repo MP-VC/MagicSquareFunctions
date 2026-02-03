@@ -41,10 +41,18 @@ public class Util {
             int xPos = array.length-1;
             int yPos = (array.length + 1) / 2-1;
             array[xPos][yPos] = 1;
-            System.out.println(array.length);
-            for (int i = 0; i < array.length; i++) {
-                if (array[xPos][yPos] != 0)xPos = (xPos + 1) % array.length;
-                if (array[xPos][yPos] != 0)yPos = (yPos + 1) % array.length;
+            System.out.println(xPos + " " + yPos );
+            for (int i = 0; i < array.length * array.length; i++) {
+                if (array[xPos][yPos] != 0) {
+                    xPos = (xPos + 1 + array.length) % array.length;
+                    yPos = (yPos + 1 + array.length) % array.length;
+                    System.out.println(xPos + " " + yPos +" "+i);
+                }
+                else {
+                    yPos--;
+                    System.out.println(xPos + " " + yPos +" "+i);
+                }
+                array[xPos][yPos] = i+1;
             }
         }
         return array;

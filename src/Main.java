@@ -9,6 +9,6 @@ public class Main {
                 {3, 5, 7},
                 {8, 1, 6}};
         System.out.println(Util.magicSqrChecker(array));
-        System.out.println(Arrays.deepToString(Util.magicSqrGenerator(5)));
+        System.out.println(Arrays.deepToString(Util.magicSqrGenerator(3)));
     }
 }
