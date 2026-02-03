@@ -35,24 +35,21 @@ public class Util {
         return isMagic;
     }
 
-    public static int[][] magicSqrGenerator(int odd) {
-        int[][] array = new int[odd][odd];
-        if (odd % 2 != 0) {
-            int xPos = array.length-1;
-            int yPos = (array.length + 1) / 2-1;
-            array[xPos][yPos] = 1;
-            System.out.println(xPos + " " + yPos );
-            for (int i = 0; i < array.length * array.length; i++) {
-                if (array[xPos][yPos] != 0) {
-                    xPos = (xPos + 1 + array.length) % array.length;
-                    yPos = (yPos + 1 + array.length) % array.length;
-                    System.out.println(xPos + " " + yPos +" "+i);
+    public static int[][] magicSqrGenerator(int size) {
+        int[][] array = new int[size][size];
+        if (size % 2 != 0) {
+            int yPos = size-1;
+            int xPos = (size + 1) / 2-1;
+            array[yPos][xPos] = 1;
+            for (int i = 1; i < size * size; i++) {
+                if (array[(yPos + 1 + size) % size][(xPos + 1 + size) % size] == 0) {
+                    yPos = (yPos + 1 + size) % size;
+                    xPos = (xPos + 1 + size) % size;
                 }
                 else {
-                    yPos--;
-                    System.out.println(xPos + " " + yPos +" "+i);
+                    yPos = (yPos - 1 + size) % size;
                 }
-                array[xPos][yPos] = i+1;
+                array[yPos][xPos] = i+1;
             }
         }
         return array;
