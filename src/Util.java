@@ -19,8 +19,7 @@ public class Util {
                 sumSavedV = sumCurrentV;
                 firstRun = false;
             } else {
-                if (sumSavedH != sumCurrentH) isMagic = false;
-                if (sumSavedV != sumCurrentV) isMagic = false;
+                if (sumSavedH != sumCurrentH || sumSavedV != sumCurrentV) isMagic = false;
                 sumSavedH = sumCurrentH;
                 sumSavedV = sumCurrentV;
             }
@@ -31,24 +30,22 @@ public class Util {
             sumMainDiagonal += arg[k][k];
             sumAntiDiagonal += arg[k][arg.length - 1 - k];
         }
-        if (sumMainDiagonal != sumSavedH && sumAntiDiagonal != sumSavedH) isMagic = false;
+        if (sumMainDiagonal != sumSavedH || sumAntiDiagonal != sumSavedH) isMagic = false;
         return isMagic;
     }
 
     public static int[][] magicSqrGenerator(int size) {
         int[][] array = new int[size][size];
         if (size % 2 != 0) {
-            int yPos = size-1;
-            int xPos = (size + 1) / 2-1;
+            int yPos = size - 1;
+            int xPos = size / 2;
             array[yPos][xPos] = 1;
             for (int i = 1; i < size * size; i++) {
-                if (array[(yPos + 1 + size) % size][(xPos + 1 + size) % size] == 0) {
-                    yPos = (yPos + 1 + size) % size;
-                    xPos = (xPos + 1 + size) % size;
+                if (array[(yPos + 1) % size][(xPos + 1) % size] == 0) {
+                    yPos = (yPos + 1) % size;
+                    xPos = (xPos + 1) % size;
                 }
-                else {
-                    yPos = (yPos - 1 + size) % size;
-                }
+                else yPos = (yPos - 1) % size;
                 array[yPos][xPos] = i+1;
             }
         }
